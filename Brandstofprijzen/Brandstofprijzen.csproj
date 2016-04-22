@@ -93,6 +93,8 @@
     <Compile Include="Startpagina.xaml.cs">
       <DependentUpon>Startpagina.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Tankstation.cs" />
+    <Compile Include="Tankstations.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">

@@ -67,6 +67,14 @@ namespace Brandstofprijzen
         /// session.  The state will be null the first time a page is visited.</param>
         private void NavigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
+            //Tankstation tankstation = new Tankstation();
+            //tankstation.naam = "Bouts";
+            //tankstation.adres = "Scheepvaartskaai 16";
+            //tankstation.Prijs95 = 1.21;
+            //tankstation.Prijs98 = 1.38;
+            //tankstation.PrijsDiesel = 1.02;
+            Tankstations tankstations = new Tankstations();
+            this.DefaultViewModel["items"] = tankstations;
         }
 
         /// <summary>
@@ -107,5 +115,15 @@ namespace Brandstofprijzen
         }
 
         #endregion
+
+        private void brandstofType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void ListView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
+        }
     }
 }
