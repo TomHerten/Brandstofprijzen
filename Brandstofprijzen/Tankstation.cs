@@ -9,6 +9,21 @@ namespace Brandstofprijzen
 {
     public class Tankstation : INotifyPropertyChanged
     {
+        private string uniqueId;
+
+        public string UniqueId
+        {
+            get { return uniqueId; }
+            set
+            {
+                if (value != uniqueId)
+                {
+                    uniqueId = value;
+                    NotifyPropertyChanged("UniqueId");
+                }
+            }
+        }
+
         private string Naam;
 
         public string naam
@@ -56,6 +71,18 @@ namespace Brandstofprijzen
             get { return prijsDiesel; }
             set { prijsDiesel = value;
                 NotifyPropertyChanged("PrijsDiesel");
+            }
+        }
+
+        private double prijs;
+
+        public double Prijs
+        {
+            get { return prijs; }
+            set
+            {
+                prijs = value;
+                NotifyPropertyChanged("Prijs");
             }
         }
 

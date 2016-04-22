@@ -89,11 +89,15 @@
     <Compile Include="Common\ObservableDictionary.cs" />
     <Compile Include="Common\RelayCommand.cs" />
     <Compile Include="Common\SuspensionManager.cs" />
+    <Compile Include="NavigatieEigenschappen.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startpagina.xaml.cs">
       <DependentUpon>Startpagina.xaml</DependentUpon>
     </Compile>
     <Compile Include="Tankstation.cs" />
+    <Compile Include="TankstationPagina.xaml.cs">
+      <DependentUpon>TankstationPagina.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Tankstations.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -115,6 +119,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="Startpagina.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TankstationPagina.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

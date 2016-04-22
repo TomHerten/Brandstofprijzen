@@ -23,12 +23,12 @@ namespace Brandstofprijzen
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class Startpagina : Page
+    public sealed partial class TankstationPagina : Page
     {
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
 
-        public Startpagina()
+        public TankstationPagina()
         {
             this.InitializeComponent();
 
@@ -67,21 +67,14 @@ namespace Brandstofprijzen
         /// session.  The state will be null the first time a page is visited.</param>
         private void NavigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
-            if (e.PageState != null && e.PageState.ContainsKey("Index"))
-            {
-                brandstofType.SelectedIndex = Convert.ToInt32(e.PageState["Index"]);
-            }
-            else
-            {
-                brandstofType.SelectedIndex = 0;
-            }
-
-            int index = brandstofType.SelectedIndex;
-
-            Tankstations tankstations = new Tankstations(index);
-
-            this.DefaultViewModel["items"] = tankstations;
-            
+            NavigatieEigenschappen eig = new NavigatieEigenschappen();
+            eig = (NavigatieEigenschappen)e.NavigationParameter;
+            string selectedIndex = eig.parameter1;
+            int index = int.Parse(selectedIndex);
+            index = index - 1;
+            Tankstations tankstations = new Tankstations(eig.parameter2);
+            Tankstation tankstation = tankstations.Items[index];
+            this.DefaultViewModel["item"] = tankstation;
         }
 
         /// <summary>
@@ -94,11 +87,6 @@ namespace Brandstofprijzen
         /// serializable state.</param>
         private void NavigationHelper_SaveState(object sender, SaveStateEventArgs e)
         {
-            if (e.PageState != null && e.PageState.ContainsKey("Index"))
-            {
-                e.PageState.Remove("Index");
-            }
-            e.PageState.Add("Index", brandstofType.SelectedIndex);
         }
 
         #region NavigationHelper registration
@@ -127,31 +115,5 @@ namespace Brandstofprijzen
         }
 
         #endregion
-
-        private void brandstofType_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (brandstofType !=null)
-            {
-                int index = brandstofType.SelectedIndex;
-
-                Tankstations tankstations = new Tankstations(index);
-
-                this.DefaultViewModel["items"] = tankstations;
-            }
-            
-        }
-
-        private void ListView_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            var itemId = ((Tankstation)e.ClickedItem).UniqueId;
-            NavigatieEigenschappen eig = new NavigatieEigenschappen();
-            eig.parameter1 = itemId;
-            eig.parameter2 = brandstofType.SelectedIndex;
-
-            if (!Frame.Navigate(typeof(TankstationPagina), eig))
-            {
-                throw new Exception("Navigation failed");
-            }
-        }
     }
 }
