@@ -89,6 +89,10 @@
     <Compile Include="Common\ObservableDictionary.cs" />
     <Compile Include="Common\RelayCommand.cs" />
     <Compile Include="Common\SuspensionManager.cs" />
+    <Compile Include="Converters\Prijs95Converter.cs" />
+    <Compile Include="Converters\Prijs98Converter.cs" />
+    <Compile Include="Converters\PrijsConverter.cs" />
+    <Compile Include="Converters\PrijsDieselConverter.cs" />
     <Compile Include="NavigatieEigenschappen.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startpagina.xaml.cs">

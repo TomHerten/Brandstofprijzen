@@ -5,6 +5,7 @@
     xmlns:local="using:Brandstofprijzen"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:maps="using:Windows.UI.Xaml.Controls.Maps"
     DataContext="{Binding DefaultViewModel.item, RelativeSource={RelativeSource Self}}"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -23,33 +24,36 @@
         </Grid.RowDefinitions>
 
         <!-- Title Panel -->
-        <StackPanel Grid.Row="0" Margin="19,0,0,0">
+        <StackPanel Grid.Row="0" Margin="20,0,0,0">
             <TextBlock Text="TANKSTATION" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,12,0,0"/>
-            <TextBlock Text="{Binding naam}" Margin="0,-6.5,0,26.5" Style="{ThemeResource HeaderTextBlockStyle}" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
+            <TextBlock Text="{Binding naam}" Margin="0,-6.5,0,0" Style="{ThemeResource HeaderTextBlockStyle}" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
         </StackPanel>
 
         <!--TODO: Content should be placed within the following grid-->
-        <StackPanel Grid.Row="1" x:Name="ContentRoot" Margin="19,95,19,0">
+        <StackPanel Grid.Row="1" x:Name="ContentRoot" Margin="10,0,10,0">
             <TextBlock Text="{Binding adres}"
                     TextWrapping="Wrap"
                     Style="{StaticResource SubheaderTextBlockStyle}"
                     Margin="12,5"/>
-            <TextBlock Text="{Binding PrijsDiesel}"
+            <TextBlock x:Name="a" Text="{Binding PrijsDiesel, Converter={StaticResource PrijsDieselConverter}}"
                    TextWrapping="Wrap"
                    Style="{StaticResource BodyTextBlockStyle}"
                    Margin="12,5"/>
-            <TextBlock Text="{Binding Prijs95}"
+            <TextBlock x:Name="b" Text="{Binding Prijs95, Converter={StaticResource Prijs95Converter}}"
                    TextWrapping="Wrap"
                    Style="{StaticResource BodyTextBlockStyle}"
                    Margin="12,5"/>
-            <TextBlock Text="{Binding Prijs98}"
+            <TextBlock x:Name="c" Text="{Binding Prijs98, Converter={StaticResource Prijs98Converter}}"
                    TextWrapping="Wrap"
                    Style="{StaticResource BodyTextBlockStyle}"
                    Margin="12,5"/>
-            <TextBlock Text="{Binding Prijs}"
-                   TextWrapping="Wrap"
-                   Style="{StaticResource BodyTextBlockStyle}"
-                   Margin="12,5"/>
+            <maps:MapControl
+            	x:Name="myMap"
+            	MapServiceToken="Place your token here."
+            	Height="320" Width="320"
+            	HorizontalAlignment="Center"
+            	Margin="30,0"
+                />
         </StackPanel>
     </Grid>
 </Page>

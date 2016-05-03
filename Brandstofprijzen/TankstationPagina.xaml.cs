@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.Devices.Geolocation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Graphics.Display;
@@ -15,6 +16,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Windows.UI;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -75,6 +77,21 @@ namespace Brandstofprijzen
             Tankstations tankstations = new Tankstations(eig.parameter2);
             Tankstation tankstation = tankstations.Items[index];
             this.DefaultViewModel["item"] = tankstation;
+            switch (eig.parameter2)
+            {
+                case 0:
+                    a.Foreground = new SolidColorBrush(Colors.Yellow);
+                    break;
+                case 1:
+                    b.Foreground = new SolidColorBrush(Colors.Yellow);
+                    break;
+                case 2:
+                    c.Foreground = new SolidColorBrush(Colors.Yellow);
+                    break;
+                default:
+                    break;
+            }
+
         }
 
         /// <summary>
@@ -112,6 +129,13 @@ namespace Brandstofprijzen
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             this.navigationHelper.OnNavigatedFrom(e);
+        }
+
+        private async void OnLocalizeUserClicked(object sender, RoutedEventArgs e)
+        {
+            Geolocator locator = new Geolocator();
+            Geoposition geoposition = await locator.GetGeopositionAsync();
+            await myMap.TrySetViewAsync(geoposition.Coordinate.Point, 15);
         }
 
         #endregion
