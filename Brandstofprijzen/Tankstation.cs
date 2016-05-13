@@ -44,6 +44,30 @@ namespace Brandstofprijzen
             }
         }
 
+        private double Lat;
+
+        public double lat
+        {
+            get { return Lat; }
+            set
+            {
+                Lat = value;
+                NotifyPropertyChanged("lat");
+            }
+        }
+
+        private double Lon;
+
+        public double lon
+        {
+            get { return Lon; }
+            set
+            {
+                Lon = value;
+                NotifyPropertyChanged("lon");
+            }
+        }
+
         private double prijs95;
 
         public double Prijs95

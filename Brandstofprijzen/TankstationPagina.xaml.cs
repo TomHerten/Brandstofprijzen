@@ -17,6 +17,8 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI;
+using Windows.Services.Maps;
+using Windows.UI.Xaml.Controls.Maps;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -91,7 +93,7 @@ namespace Brandstofprijzen
                 default:
                     break;
             }
-
+            navigate(tankstation);
         }
 
         /// <summary>
@@ -123,6 +125,7 @@ namespace Brandstofprijzen
         /// handlers that cannot cancel the navigation request.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            MapService.ServiceToken = "kOajc1fsAA5TZlkDVtCVSA​";
             this.navigationHelper.OnNavigatedTo(e);
         }
 
@@ -131,13 +134,33 @@ namespace Brandstofprijzen
             this.navigationHelper.OnNavigatedFrom(e);
         }
 
-        private async void OnLocalizeUserClicked(object sender, RoutedEventArgs e)
+        #endregion
+
+        private async void navigate(Tankstation tankstation)
         {
             Geolocator locator = new Geolocator();
             Geoposition geoposition = await locator.GetGeopositionAsync();
-            await myMap.TrySetViewAsync(geoposition.Coordinate.Point, 15);
-        }
 
-        #endregion
+            BasicGeoposition position1 = new BasicGeoposition();
+            position1.Latitude = geoposition.Coordinate.Point.Position.Latitude;
+            position1.Longitude = geoposition.Coordinate.Point.Position.Longitude;
+            Geopoint startPoint = new Geopoint(position1);
+
+            await myMap.TrySetViewAsync(geoposition.Coordinate.Point, 13);
+
+            BasicGeoposition position2 = new BasicGeoposition();
+            position2.Latitude = tankstation.lat;
+            position2.Longitude = tankstation.lon;
+            Geopoint endPoint = new Geopoint(position2);
+            MapRouteFinderResult result = await
+            MapRouteFinder.GetDrivingRouteAsync(startPoint, endPoint);
+            if (result.Status == MapRouteFinderStatus.Success)
+            {
+                MapRouteView routeView = new MapRouteView(result.Route);
+                routeView.RouteColor = Colors.Red;
+                routeView.OutlineColor = Colors.Black;
+                myMap.Routes.Add(routeView);
+            }
+        }
     }
 }

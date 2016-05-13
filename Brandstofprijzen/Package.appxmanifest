@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest" xmlns:m3="http://schemas.microsoft.com/appx/2014/manifest" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest">
   <Identity Name="df0c5207-0193-43f3-a0cb-558ca82d6c8b" Publisher="CN=Tom" Version="1.0.0.0" />
-  <mp:PhoneIdentity PhoneProductId="df0c5207-0193-43f3-a0cb-558ca82d6c8b" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <mp:PhoneIdentity PhoneProductId="2e9aab9b-7088-455c-9182-4502edf30ba1" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <!--<mp:PhoneIdentity PhoneProductId="df0c5207-0193-43f3-a0cb-558ca82d6c8b" PhonePublisherId="00000000-0000-0000-0000-000000000000" />-->
   <Properties>
     <DisplayName>Brandstofprijzen</DisplayName>
     <PublisherDisplayName>Tom</PublisherDisplayName>

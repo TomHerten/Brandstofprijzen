@@ -18,6 +18,8 @@ namespace Brandstofprijzen
             tankstation.UniqueId = Convert.ToString(1);
             tankstation.naam = "Bouts";
             tankstation.adres = "Scheepvaartskaai 15";
+            tankstation.lat = 50.940439;
+            tankstation.lon = 5.358364;
             tankstation.Prijs95 = 1.21;
             tankstation.Prijs98 = 1.38;
             tankstation.PrijsDiesel = 1.02;
@@ -38,6 +40,8 @@ namespace Brandstofprijzen
             tankstation.UniqueId = Convert.ToString(2);
             tankstation.naam = "Dats 24";
             tankstation.adres = "Genkersteenweg 70";
+            tankstation.lat = 50.943569;
+            tankstation.lon = 5.350431;
             tankstation.Prijs95 = 1.25;
             tankstation.Prijs98 = 1.45;
             tankstation.PrijsDiesel = 1.05;
